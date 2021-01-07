@@ -21,3 +21,7 @@ export const isBasicEmoji = function (text) {
 export const isCustomEmoji = function (text) {
 	return customEmojiRegExp.test(text);
 };
+
+export const messageAuthorIsMoltar = function (message) {
+	return message.author.id === process.env.MOLTAR_DISCORD_ID;
+};

@@ -6,12 +6,17 @@ import randomItem from 'random-item';
 import nsfwCommands from './commands/nsfw';
 import InspireCommand from './commands/inspire';
 import RankCommand from './commands/rank';
+import ConfigCommand from './commands/config';
+import CommandCommand from './commands/command';
 import PyramidEvent from './events/pyramid';
 
 (async function () {
 	const bot = new Bot({
 		commands: [
-			...commands,
+			ConfigCommand,
+			CommandCommand,
+			commands.PingCommand,
+			commands.HelpCommand,
 			...nsfwCommands,
 			InspireCommand,
 			RankCommand

@@ -1,0 +1,26 @@
+{
+  "name": "moltega",
+  "version": "0.0.1",
+  "description": "Discord bot for Zetalot's server",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "babel src -d dist",
+    "build:watch": "babel src -d dist --watch"
+  },
+  "author": "Alvaro Castro",
+  "license": "MIT",
+  "dependencies": {
+    "@alvarocastro/discord-bot": "0.0.7",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.1",
+    "pornhub.js": "^0.2.4",
+    "random-item": "^3.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.11"
+  }
+}

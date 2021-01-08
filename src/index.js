@@ -7,6 +7,7 @@ import nsfwCommands from './commands/nsfw';
 import InspireCommand from './commands/inspire';
 import FortuneCommand from './commands/fortune';
 import JokeCommand from './commands/joke';
+import RollCommand from './commands/roll';
 import RankCommand from './commands/rank';
 import TestCommand from './commands/test';
 import ConfigCommand from './commands/config';
@@ -25,6 +26,7 @@ import PyramidEvent from './events/pyramid';
 			FortuneCommand,
 			JokeCommand,
 			RankCommand,
+			RollCommand,
 			TestCommand
 		],
 		events: [

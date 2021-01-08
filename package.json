@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "@alvarocastro/discord-bot": "0.0.10",
+    "@alvarocastro/roll": "^1.0.2",
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.1",
     "pornhub.js": "^0.2.4",

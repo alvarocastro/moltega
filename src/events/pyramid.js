@@ -171,9 +171,10 @@ export default class PyramidEvent extends ChatEvent {
 				}
 				if (participants.length > 1) {
 					gratsMessageText = `${and(participants.map(p => p.mention))} built a ${emoji} ${match.name}, they get ${and(participants.map(p => p.count * match.value))} spam points respectively ${pogText}`;
+				} else {
+					const p = participants[0];
+					gratsMessageText = `${p.mention} built a ${emoji} ${match.name} and get ${p.count * match.value} spam points ${pogText}`;
 				}
-				const p = participants[0];
-				gratsMessageText = `${p.mention} built a ${emoji} ${match.name} and get ${p.count * match.value} spam points ${pogText}`;
 			}
 			channel.send(gratsMessageText);
 

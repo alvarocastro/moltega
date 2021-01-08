@@ -5,7 +5,9 @@ import fetch from 'node-fetch';
 import randomItem from 'random-item';
 import nsfwCommands from './commands/nsfw';
 import InspireCommand from './commands/inspire';
+import FortuneCommand from './commands/fortune';
 import RankCommand from './commands/rank';
+import TestCommand from './commands/test';
 import ConfigCommand from './commands/config';
 import CommandCommand from './commands/command';
 import PyramidEvent from './events/pyramid';
@@ -19,7 +21,9 @@ import PyramidEvent from './events/pyramid';
 			commands.HelpCommand,
 			...nsfwCommands,
 			InspireCommand,
-			RankCommand
+			FortuneCommand,
+			RankCommand,
+			TestCommand
 		],
 		events: [
 			PyramidEvent
@@ -30,6 +34,7 @@ import PyramidEvent from './events/pyramid';
 
 	// Activity changer
 	bot.setInterval(async function () {
+		console.log('[activity] Changing activity...');
 		/**
 		 * Endpoint to get a user id
 		 * const res = await fetch('https://api.twitch.tv/kraken/users?login=followgrubby', {

@@ -11,7 +11,7 @@
   "author": "Alvaro Castro",
   "license": "MIT",
   "dependencies": {
-    "@alvarocastro/discord-bot": "0.0.8",
+    "@alvarocastro/discord-bot": "0.0.10",
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.1",
     "pornhub.js": "^0.2.4",

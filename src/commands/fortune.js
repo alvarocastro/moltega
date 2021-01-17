@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 export default class FortuneCommand extends ChatCommand {
 	name = 'fortune';
 	description = 'Crack open your fortune cookie!';
-	cooldown = 10 * 60 * 60 * 1000; // Time a user must wait to get a new fortune
+	cooldown = 1 * 60 * 60 * 1000; // (1 hour) Time a user must wait to get a new fortune
 
 	async run (message, args, memory) {
 		const lastFortuneTime = memory.get(['fortune', message.author.id], 0);

@@ -4,6 +4,7 @@ import fetch from 'node-fetch';
 export default class BoobsCommand extends ChannelChatCommand {
 	name = 'boobs';
 	description = 'Posts a boobs pic';
+	hidden = true;
 
 	max = 14692; // Max number, probably the amount of posts in oboobs.ru. Should be increased over time
 

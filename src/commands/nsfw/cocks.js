@@ -3,8 +3,8 @@ import randomItem from 'random-item';
 
 export default class CocksCommand extends PhSearchCommand {
 	name = 'cocks';
-	format = null;
 	description = 'Posts a cock pic';
+	hidden = true;
 
 	check () {
 		return true;

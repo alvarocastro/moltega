@@ -3,8 +3,8 @@ import randomItem from 'random-item';
 
 export default class BdsmCommand extends PhSearchCommand {
 	name = 'bdsm';
-	format = null;
 	description = 'Posts a BDSM pic';
+	hidden = true;
 
 	check () {
 		return true;

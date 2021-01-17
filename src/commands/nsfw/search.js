@@ -8,6 +8,7 @@ export default class PhSearchCommand extends ChatCommand {
 	name = 'phsearch';
 	format = '<term>';
 	description = 'Searches Pornhub for the term and posts a pic';
+	hidden = true;
 
 	check () {
 		return true;

@@ -4,6 +4,7 @@ import fetch from 'node-fetch';
 export default class ButtsCommand extends ChannelChatCommand {
 	name = 'butts';
 	description = 'Posts a butts pic';
+	hidden = true;
 
 	max = 8358; // Max number, probably the amount of posts in obutts.ru. Should be increased over time
 

@@ -1,10 +1,9 @@
 import PhSearchCommand from './search';
-import randomItem from 'random-item';
 
 export default class HentaiCommand extends PhSearchCommand {
 	name = 'hentai';
-	format = null;
 	description = 'Posts a weeb pic';
+	hidden = true;
 
 	check () {
 		return true;
@@ -19,9 +18,7 @@ export default class HentaiCommand extends PhSearchCommand {
 			}
 		}
 
-		const term = randomItem([
-			'hentai'
-		]);
+		const term = 'hentai';
 		await super.run(message, [term]);
 	}
 }

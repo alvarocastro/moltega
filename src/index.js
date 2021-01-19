@@ -4,7 +4,7 @@ import { Bot, commands } from '@alvarocastro/discord-bot';
 import fetch from 'node-fetch';
 import randomItem from 'random-item';
 import PyramidEvent from './events/pyramid';
-import CatCommand from './commands/cat';
+import CatsCommand from './commands/cats';
 import CommandCommand from './commands/command';
 import ConfigCommand from './commands/config';
 import FortuneCommand from './commands/fortune';
@@ -21,7 +21,7 @@ import TestCommand from './commands/test';
 	const bot = new Bot({
 		commands: [
 			// TestCommand,
-			CatCommand,
+			CatsCommand,
 			CommandCommand,
 			ConfigCommand,
 			FortuneCommand,

@@ -2,8 +2,8 @@ import { ChatCommand } from '@alvarocastro/discord-bot';
 import randomPuppy from 'random-puppy';
 import randomItem from 'random-item';
 
-export default class MemeCommand extends ChatCommand {
-	name = 'cat';
+export default class CatsCommand extends ChatCommand {
+	name = 'cats';
 	description = 'Get an image of our overlords';
 
 	async run ({channel}) {

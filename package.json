@@ -8,15 +8,24 @@
     "build": "babel src -d dist",
     "build:watch": "babel src -d dist --watch"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvarocastro/moltega.git"
+  },
   "author": "Alvaro Castro",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alvarocastro/moltega/issues"
+  },
+  "homepage": "https://github.com/alvarocastro/moltega#readme",
   "dependencies": {
     "@alvarocastro/discord-bot": "0.0.10",
     "@alvarocastro/roll": "^1.0.2",
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.1",
     "pornhub.js": "^0.2.4",
-    "random-item": "^3.1.0"
+    "random-item": "^3.1.0",
+    "random-puppy": "^1.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",

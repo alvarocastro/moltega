@@ -3,31 +3,37 @@ require('dotenv').config();
 import { Bot, commands } from '@alvarocastro/discord-bot';
 import fetch from 'node-fetch';
 import randomItem from 'random-item';
-import nsfwCommands from './commands/nsfw';
-import InspireCommand from './commands/inspire';
-import FortuneCommand from './commands/fortune';
-import JokeCommand from './commands/joke';
-import RollCommand from './commands/roll';
-import RankCommand from './commands/rank';
-import TestCommand from './commands/test';
-import ConfigCommand from './commands/config';
-import CommandCommand from './commands/command';
 import PyramidEvent from './events/pyramid';
+import CatCommand from './commands/cat';
+import CommandCommand from './commands/command';
+import ConfigCommand from './commands/config';
+import FortuneCommand from './commands/fortune';
+import InspireCommand from './commands/inspire';
+import JokeCommand from './commands/joke';
+import MemeCommand from './commands/meme';
+import RankCommand from './commands/rank';
+import RollCommand from './commands/roll';
+import VaseCommand from './commands/vase';
+import nsfwCommands from './commands/nsfw';
+import TestCommand from './commands/test';
 
 (async function () {
 	const bot = new Bot({
 		commands: [
-			ConfigCommand,
+			// TestCommand,
+			CatCommand,
 			CommandCommand,
-			commands.PingCommand,
-			commands.HelpCommand,
-			...nsfwCommands,
-			InspireCommand,
+			ConfigCommand,
 			FortuneCommand,
+			InspireCommand,
 			JokeCommand,
+			MemeCommand,
 			RankCommand,
 			RollCommand,
-			TestCommand
+			VaseCommand,
+			commands.PingCommand,
+			commands.HelpCommand,
+			...nsfwCommands
 		],
 		events: [
 			PyramidEvent

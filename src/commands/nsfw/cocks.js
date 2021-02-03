@@ -2,15 +2,15 @@ import PhSearchCommand from './search';
 import randomItem from 'random-item';
 
 export default class CocksCommand extends PhSearchCommand {
-	name = 'cocks';
-	description = 'Posts a cock pic';
-	hidden = true;
-
-	check () {
-		return true;
+	constructor (options = {}) {
+		super(Object.assign({
+			name: 'cocks',
+			format: '',
+			description: 'Posts a cock pic'
+		}, options));
 	}
 
-	async run (message) {
+	async exec (message) {
 		const term = randomItem([
 			'cock',
 			'cocks',

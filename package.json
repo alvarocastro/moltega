@@ -19,18 +19,25 @@
   },
   "homepage": "https://github.com/alvarocastro/moltega#readme",
   "dependencies": {
-    "@alvarocastro/discord-bot": "0.0.10",
-    "@alvarocastro/roll": "^1.0.2",
+    "@diamondbot/cats-command": "^2.1.0",
+    "@diamondbot/core": "^0.0.3",
+    "@diamondbot/fortune-command": "^1.0.1",
+    "@diamondbot/inspire-command": "^1.0.0",
+    "@diamondbot/joke-command": "^1.0.0",
+    "@diamondbot/meme-command": "^1.0.0",
+    "@diamondbot/minesweeper-command": "^1.0.4",
+    "@diamondbot/ping-command": "^1.0.1",
+    "@diamondbot/roll-command": "^1.0.1",
+    "@diamondbot/vase-command": "^1.0.0",
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.1",
     "pornhub.js": "^0.2.4",
-    "random-item": "^3.1.0",
-    "random-puppy": "^1.1.0"
+    "random-item": "^3.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.10",
-    "@babel/core": "^7.12.10",
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/preset-env": "^7.12.11"
+    "@babel/cli": "^7.12.13",
+    "@babel/core": "^7.12.13",
+    "@babel/plugin-proposal-class-properties": "^7.12.13",
+    "@babel/preset-env": "^7.12.13"
   }
 }

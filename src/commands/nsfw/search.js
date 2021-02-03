@@ -1,30 +1,32 @@
-import { ChatCommand } from '@alvarocastro/discord-bot';
+import { ChatCommand } from '@diamondbot/core';
 import randomItem from 'random-item';
 import PornHub from 'pornhub.js';
 
-const ph = new PornHub();
 
 export default class PhSearchCommand extends ChatCommand {
-	name = 'phsearch';
-	format = '<term>';
-	description = 'Searches Pornhub for the term and posts a pic';
-	hidden = true;
+	ph = new PornHub();
 
-	check () {
-		return true;
+	constructor (options = {}) {
+		super(Object.assign({
+			name: 'phsearch',
+			format: '<term>',
+			description: 'Searches Pornhub for the term and posts a pic',
+			hidden: true,
+			nsfw: true
+		}, options));
 	}
 
-	async run ({channel}, terms) {
+	async exec ({channel}, terms) {
 		const term = terms.join(' ');
 		const waitMessage = await channel.send(`Fetching some ${term}...`);
 
-		const {data: albums} = await ph.search('Album', term);
+		const {data: albums} = await this.ph.search('Album', term);
 		const album = randomItem(albums);
 
-		const {data: {photos}} = await ph.album(album.url)
+		const {data: {photos}} = await this.ph.album(album.url)
 		const photo = randomItem(photos);
 
-		const {data: {info}} = await ph.photo(photo.url)
+		const {data: {info}} = await this.ph.photo(photo.url)
 		const imageUrl = info.url;
 
 		// const reply = await channel.send(`Fetching some ${term}...`);

@@ -1,4 +1,4 @@
-import { ChatEvent } from '@alvarocastro/discord-bot';
+import { ChatEvent } from '@diamondbot/core';
 import { and, isEmoji } from '../utils';
 
 const pyramids = {
@@ -6,28 +6,28 @@ const pyramids = {
 		'#|# #|#': {
 			name: 'plebamid',
 			value: -10,
-			message (participants, emoji, channel) {
-				const kekwEmoji = channel.guild.emojis.cache.find(emoji => emoji.name.toLowerCase() === 'kekw');
-				let kekwText;
-				if (kekwEmoji) {
-					kekwText = `<:${kekwEmoji.name}:${kekwEmoji.id}>`;
-				}
+			message (participants, emoji, channel, bot) {
+				const kekwEmoji = bot.emoji('KEKW');
 				if (participants.length > 1) {
-					return `${and(participants.map(p => p.mention))} built a ${emoji} ${this.name}, they lose ${and(participants.map(p => p.count * -this.value))} spam points respectively ${kekwText}`;
+					return `${and(participants.map(p => p.mention))} built a ${emoji} ${this.name}, they lose ${and(participants.map(p => p.count * -this.value))} spam points respectively ${kekwEmoji}`;
 				}
 				const p = participants[0];
-				return `${p.mention} built a ${emoji} ${this.name} and loses ${p.count * -this.value} spam points ${kekwText}`;
+				return `${p.mention} built a ${emoji} ${this.name} and loses ${p.count * -this.value} spam points ${kekwEmoji}`;
 			}
 		},
 		'#|# # # #|#': {
 			name: 'cockamid',
 			value: 10
-			// message () {
-
-			// },
-			// action () {
-
-			// }
+		},
+		'# # #|# # #|# # #': {
+			name: 'squaremid',
+			value: 11
+		}
+	},
+	4: {
+		'# # # #|# # # #|# # # #|# # # #': {
+			name: 'tetrasquaremid',
+			value: 12
 		}
 	},
 	5: {
@@ -38,18 +38,56 @@ const pyramids = {
 		'# # #|# #|#|# #|# # #': {
 			name: 'weirdamid',
 			value: 20
+		},
+		'# # #|#|# #|#|#': {
+			name: 'Fmid',
+			value: 1
+		},
+		'# # # # #|# # # # #|# # # # #|# # # # #|# # # # #': {
+			name: 'pentasquaremid',
+			value: 13
 		}
 	},
 	6: {
 		'# #|# #|# # # #|# # # #|# #|# #': {
 			name: 'zoomed plebamid',
 			value: 20
+		},
+		'# # # # # #|# # # # # #|# # # # # #|# # # # # #|# # # # # #|# # # # # #': {
+			name: 'hexasquaremid',
+			value: 14
 		}
 	},
 	7: {
 		'#|# #|# # #|# # # #|# # #|# #|#': {
 			name: 'tetramid',
 			value: 11
+		},
+		'# # #|# #|# # # #|# # # # # # #|# # # #|# #|# # #': {
+			name: 'spaceshipmid',
+			value: 35
+		},
+		'#|# #|# # # #|# # # # # # # #|# # # #|# #|#': {
+			name: 'eiffelmid',
+			value: 30
+		},
+		'# # # # # # #|# # # # # # #|# # # # # # #|# # # # # # #|# # # # # # #|# # # # # # #|# # # # # # #': {
+			name: 'heptasquaremid',
+			value: 15
+		}
+	},
+	8: {
+		'#|# #|# # # #|# # # # #|# # # # #|# # # #|# #|#': {
+			name: 'belliryamid',
+			value: 25
+		},
+		'#|# #|# # #|# # # #|#|# #|# # #|# # # #': {
+			name: 'nepalmid',
+			value: 20
+		},
+		'# # # # # # # #|# # # # # # # #|# # # # # # # #|# # # # # # # #|# # # # # # # #|# # # # # # # #|# # # # # # # #|# # # # # # # #': {
+			name: 'octasquaremid',
+			value: 16
 		}
 	},
 	9: {
@@ -60,6 +98,16 @@ const pyramids = {
 		'# #|# # #|# # # #|# # #|# #|# # #|# # # #|# # #|# #': {
 			name: 'boobamid',
 			value: 25
+		},
+		'# # # # # # # # #|# # # # # # # # #|# # # # # # # # #|# # # # # # # # #|# # # # # # # # #|# # # # # # # # #|# # # # # # # # #|# # # # # # # # #|# # # # # # # # #': {
+			name: 'enneasquaremid',
+			value: 18
+		}
+	},
+	10: {
+		'# # # # # # # # # #|# # # # # # # # # #|# # # # # # # # # #|# # # # # # # # # #|# # # # # # # # # #|# # # # # # # # # #|# # # # # # # # # #|# # # # # # # # # #|# # # # # # # # # #|# # # # # # # # # #': {
+			name: 'decasquaremid',
+			value: 20
 		}
 	},
 	11: {
@@ -95,7 +143,11 @@ const pyramids = {
 };
 
 export default class PyramidEvent extends ChatEvent {
-	check ({channel}, memory) {
+	constructor () {
+		super('Pyramids');
+	}
+
+	check () {
 		return true;
 	}
 
@@ -162,18 +214,14 @@ export default class PyramidEvent extends ChatEvent {
 			});
 			let gratsMessageText;
 			if (match.message) {
-				gratsMessageText = match.message(participants, emoji, channel);
+				gratsMessageText = match.message(participants, emoji, channel, this.bot);
 			} else {
-				const pogEmoji = channel.guild.emojis.cache.find(emoji => emoji.name.toLowerCase() === 'pogyou');
-				let pogText;
-				if (pogEmoji) {
-					pogText = `<:${pogEmoji.name}:${pogEmoji.id}>`;
-				}
+				const pogEmoji = this.bot.emoji('PogYou');
 				if (participants.length > 1) {
-					gratsMessageText = `${and(participants.map(p => p.mention))} built a ${emoji} ${match.name}, they get ${and(participants.map(p => p.count * match.value))} spam points respectively ${pogText}`;
+					gratsMessageText = `${and(participants.map(p => p.mention))} built a ${emoji} ${match.name}, they get ${and(participants.map(p => p.count * match.value))} spam points respectively ${pogEmoji}`;
 				} else {
 					const p = participants[0];
-					gratsMessageText = `${p.mention} built a ${emoji} ${match.name} and get ${p.count * match.value} spam points ${pogText}`;
+					gratsMessageText = `${p.mention} built a ${emoji} ${match.name} and get ${p.count * match.value} spam points ${pogEmoji}`;
 				}
 			}
 			channel.send(gratsMessageText);
@@ -190,6 +238,3 @@ export default class PyramidEvent extends ChatEvent {
 		});
 	}
 }
-
-
-

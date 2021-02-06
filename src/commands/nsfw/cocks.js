@@ -6,7 +6,9 @@ export default class CocksCommand extends PhSearchCommand {
 		super(Object.assign({
 			name: 'cocks',
 			format: '',
-			description: 'Posts a cock pic'
+			description: 'Posts a cock pic',
+			hidden: true,
+			nsfw: true
 		}, options));
 	}
 

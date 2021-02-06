@@ -5,7 +5,9 @@ export default class HentaiCommand extends PhSearchCommand {
 		super(Object.assign({
 			name: 'hentai',
 			format: '',
-			description: 'Posts a weeb pic'
+			description: 'Posts a weeb pic',
+			hidden: true,
+			nsfw: true
 		}, options));
 	}
 

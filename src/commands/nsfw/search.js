@@ -2,7 +2,6 @@ import { ChatCommand } from '@diamondbot/core';
 import randomItem from 'random-item';
 import PornHub from 'pornhub.js';
 
-
 export default class PhSearchCommand extends ChatCommand {
 	ph = new PornHub();
 

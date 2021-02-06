@@ -78,7 +78,7 @@ const pyramids = {
 	},
 	8: {
 		'#|# #|# # # #|# # # # #|# # # # #|# # # #|# #|#': {
-			name: 'belliryamid',
+			name: 'bellyriamid',
 			value: 25
 		},
 		'#|# #|# # #|# # # #|#|# #|# # #|# # # #': {

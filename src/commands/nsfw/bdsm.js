@@ -6,7 +6,9 @@ export default class BdsmCommand extends PhSearchCommand {
 		super(Object.assign({
 			name: 'bdsm',
 			format: '',
-			description: 'Posts a BDSM pic'
+			description: 'Posts a BDSM pic',
+			hidden: true,
+			nsfw: true
 		}, options));
 	}
 

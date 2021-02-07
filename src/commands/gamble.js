@@ -61,7 +61,7 @@ export default class GambleCommand extends ChatCommand {
 			return await channel.send(`
 				> Roulette help:
 				> \`!${this.name} roulette <bet> <type>\`
-				> \`bet\`: Minimum bet is 100 spam points.
+				> \`bet\`: Minimum bet is 50 spam points.
 				> \`type\`: Type of bet can be one of:
 				> - \`#\` to bet on an number, pays 36 to 1.
 				> - \`odd\`/\`even\` to bet on type of number, pays 2 to 1.
@@ -89,7 +89,7 @@ export default class GambleCommand extends ChatCommand {
 			return await channel.send(`
 				> Slots help:
 				> \`!${this.name} slots <bet>\`
-				> \`bet\`: Minimum bet is 50 spam points.
+				> \`bet\`: Minimum bet is 20 spam points.
 				> Pay table:
 				>   💰💰💰 = bet x 100
 				>   💰💰 = bet x 5
@@ -153,8 +153,8 @@ export default class GambleCommand extends ChatCommand {
 		) {
 			return await this.commandHelp(message, 'roulette');
 		}
-		if (amount < 100) {
-			return await message.reply('minimum bet is 100 spam points');
+		if (amount < 50) {
+			return await message.reply('minimum bet is 50 spam points');
 		}
 
 		const pocket = randomItem(this.pockets);
@@ -199,8 +199,8 @@ export default class GambleCommand extends ChatCommand {
 		if (!amount) {
 			return await this.commandHelp(message, 'slots');
 		}
-		if (amount < 50) {
-			return await message.reply('minimum bet is 50 spam points');
+		if (amount < 20) {
+			return await message.reply('minimum bet is 20 spam points');
 		}
 
 		const {author} = message;

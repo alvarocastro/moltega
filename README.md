@@ -1,3 +1,3 @@
 # moltega
 
-Built using [@alvarocastro/discord-bot](https://www.npmjs.com/package/@alvarocastro/discord-bot)
+Built using [DiamondBot](https://github.com/alvarocastro/diamondbot)

@@ -93,7 +93,7 @@ export default class GambleCommand extends ChatCommand {
 				> Pay table:
 				>   💰💰💰 = bet x 100
 				>   💰💰 = bet x 5
-				>   💰 = bet x 1
+				>   💰 = bet x 2
 				>   💸💸💸 = bet x 50
 				>   match any 3 emotes = bet x 25
 				> Example:
@@ -117,7 +117,8 @@ export default class GambleCommand extends ChatCommand {
 			return await message.reply('minimum bet is 5 spam points');
 		}
 		const {author} = message;
-		const playerWon = Math.random() <= 0.45;
+		const winOdds = amount < 50 ? 0.52 : 0.48; // If bet is less than roulette's minimum, winning odds are better. If not, winning odds are worse than roulette to keep things balanced
+		const playerWon = Math.random() <= winOdds;
 		const [botSide, playerSide] = Math.random() < 0.5 ? ['heads', 'tails'] : ['tails', 'heads'];
 
 		let points = memory.get(['points', author.id]);
@@ -210,7 +211,6 @@ export default class GambleCommand extends ChatCommand {
 			'🍆',
 			'🍋',
 			'🍒',
-			'🍉',
 			'🍑'
 		];
 
@@ -239,7 +239,7 @@ export default class GambleCommand extends ChatCommand {
 			if (fats === 2) {
 				multiplier = 5;
 			} else if (fats === 1) {
-				multiplier = 1;
+				multiplier = 2;
 			}
 		}
 

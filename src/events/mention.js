@@ -15,7 +15,7 @@ export default class MentionEvent extends ChatEvent {
 
 		if (mentions.has(this.bot.user)) {
 			await message.react(this.bot.emoji('pingsock'));
-			if (Math.random() < 0.2) {
+			if (Math.random() < 0.35) {
 				await channel.send(`${author} ${getInsult()}`);
 			}
 		}

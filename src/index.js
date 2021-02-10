@@ -16,6 +16,7 @@ import RankCommand from './commands/rank';
 import TopCommand from './commands/top';
 import HelpCommand from '@diamondbot/help-command';
 import GambleCommand from './commands/gamble';
+// import MemberageCommand from './commands/memberage';
 
 import PornCommand from '@diamondbot/porn-command';
 
@@ -50,6 +51,7 @@ import PassiveSpamPointsEvent from './events/passive-spam-points';
 	bot.addCommand(new TopCommand);
 	bot.addCommand(new HelpCommand);
 	bot.addCommand(new GambleCommand);
+	// bot.addCommand(new MemberageCommand);
 
 	bot.addCommand(new BdsmCommand);
 	bot.addCommand(new BoobsCommand);

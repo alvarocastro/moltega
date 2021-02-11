@@ -39,7 +39,7 @@ const pyramids = {
 			name: 'weirdamid',
 			value: 20
 		},
-		'# # #|#|# #|#|#': {
+		'# # #|#|# # #|#|#': {
 			name: 'Fmid',
 			value: 1
 		},

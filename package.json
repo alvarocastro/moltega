@@ -21,7 +21,7 @@
   "dependencies": {
     "@diamondbot/cats-command": "^2.3.1",
     "@diamondbot/core": "^0.1.2",
-    "@diamondbot/dogs-command": "^1.1.1",
+    "@diamondbot/dogs-command": "^1.3.0",
     "@diamondbot/fact-command": "^1.0.0",
     "@diamondbot/fortune-command": "^1.0.2",
     "@diamondbot/help-command": "^1.0.0",

@@ -12,6 +12,7 @@ import CatsCommand from '@diamondbot/cats-command';
 import DogsCommand from '@diamondbot/dogs-command';
 import MinesweeperCommand from '@diamondbot/minesweeper-command';
 import HistoryCommand from '@diamondbot/history-command';
+import FactCommand from '@diamondbot/fact-command';
 
 import RankCommand from './commands/rank';
 import TopCommand from './commands/top';
@@ -53,6 +54,7 @@ import PassiveSpamPointsEvent from './events/passive-spam-points';
 	bot.addCommand(new HelpCommand);
 	bot.addCommand(new GambleCommand);
 	bot.addCommand(new HistoryCommand);
+	bot.addCommand(new FactCommand);
 
 	// bot.addCommand(new MemberageCommand);
 

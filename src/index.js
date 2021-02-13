@@ -14,6 +14,7 @@ import MinesweeperCommand from '@diamondbot/minesweeper-command';
 import HistoryCommand from '@diamondbot/history-command';
 import FactCommand from '@diamondbot/fact-command';
 // import WeatherCommand from '@diamondbot/weather-command';
+import TipCommand from './commands/tip';
 
 import RankCommand from './commands/rank';
 import TopCommand from './commands/top';
@@ -54,6 +55,7 @@ import PassiveSpamPointsEvent from './events/passive-spam-points';
 	bot.addCommand(new TopCommand);
 	bot.addCommand(new HelpCommand);
 	bot.addCommand(new GambleCommand);
+	bot.addCommand(new TipCommand);
 	bot.addCommand(new HistoryCommand);
 	bot.addCommand(new FactCommand);
 	// bot.addCommand(new WeatherCommand);

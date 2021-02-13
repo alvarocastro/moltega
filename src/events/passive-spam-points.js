@@ -13,7 +13,7 @@ export default class PassiveSpamPointsEvent extends ChatEvent {
 		const prefix = memory.get(['config', 'prefix']);
 
 		if (!content.startsWith(prefix)) {
-			memory.db.update(['points', author.id], p => p + 1).write();
+			memory.db.update(['points', author.id], p => (p || 0) + 1).write();
 		}
 	}
 }

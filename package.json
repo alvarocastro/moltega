@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node dist/index.js",
     "build": "babel src -d dist",
-    "build:watch": "babel src -d dist --watch"
+    "build:watch": "babel src -d dist --watch",
+    "update": "npx npm-check-updates -u;npm install"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,7 @@
     "@diamondbot/help-command": "^1.0.0",
     "@diamondbot/history-command": "^1.0.1",
     "@diamondbot/inspire-command": "^1.1.0",
-    "@diamondbot/joke-command": "^1.1.0",
+    "@diamondbot/joke-command": "^1.2.0",
     "@diamondbot/meme-command": "^1.0.1",
     "@diamondbot/minesweeper-command": "^1.0.5",
     "@diamondbot/ping-command": "^1.1.0",
@@ -43,9 +44,9 @@
     "random-item": "^3.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.13",
-    "@babel/core": "^7.12.13",
+    "@babel/cli": "^7.12.16",
+    "@babel/core": "^7.12.16",
     "@babel/plugin-proposal-class-properties": "^7.12.13",
-    "@babel/preset-env": "^7.12.13"
+    "@babel/preset-env": "^7.12.16"
   }
 }

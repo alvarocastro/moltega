@@ -13,6 +13,7 @@ import DogsCommand from '@diamondbot/dogs-command';
 import MinesweeperCommand from '@diamondbot/minesweeper-command';
 import HistoryCommand from '@diamondbot/history-command';
 import FactCommand from '@diamondbot/fact-command';
+import MemberageCommand from '@diamondbot/memberage-command';
 // import WeatherCommand from '@diamondbot/weather-command';
 import TipCommand from './commands/tip';
 
@@ -20,7 +21,6 @@ import RankCommand from './commands/rank';
 import TopCommand from './commands/top';
 import HelpCommand from '@diamondbot/help-command';
 import GambleCommand from './commands/gamble';
-// import MemberageCommand from './commands/memberage';
 
 import PornCommand from '@diamondbot/porn-command';
 
@@ -60,7 +60,7 @@ import PassiveSpamPointsEvent from './events/passive-spam-points';
 	bot.addCommand(new FactCommand);
 	// bot.addCommand(new WeatherCommand);
 
-	// bot.addCommand(new MemberageCommand);
+	bot.addCommand(new MemberageCommand);
 
 	bot.addCommand(new BdsmCommand);
 	bot.addCommand(new BoobsCommand);

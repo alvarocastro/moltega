@@ -29,6 +29,7 @@
     "@diamondbot/history-command": "^1.0.1",
     "@diamondbot/inspire-command": "^1.1.0",
     "@diamondbot/joke-command": "^1.2.0",
+    "@diamondbot/memberage-command": "^1.0.1",
     "@diamondbot/meme-command": "^1.0.1",
     "@diamondbot/minesweeper-command": "^1.0.5",
     "@diamondbot/ping-command": "^1.1.0",

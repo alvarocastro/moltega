@@ -143,6 +143,7 @@ export default class GambleCommand extends ChatCommand {
 		
 		if (
 			!amount ||
+			!bet ||
 			(!isNaN(Number(bet)) && (
 				Number(bet) < 0 ||
 				Number(bet) > 36)

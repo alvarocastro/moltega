@@ -245,7 +245,7 @@ export default class GambleCommand extends ChatCommand {
 		}
 
 		const points = memory.get(['points', author.id]);
-		let text = `[ ${result.join(' | ')} ]`;
+		let text = `[ ${result.join(' | ')} ] x${multiplier}!`;
 		if (multiplier) {
 			text = `${text} You win ${amount * multiplier} spam points ${this.bot.emoji('PogYou')} (balance: ${points + (amount * (multiplier - 1))})`;
 			memory.set(['points', author.id], points + (amount * (multiplier - 1)));

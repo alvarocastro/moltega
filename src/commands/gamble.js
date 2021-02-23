@@ -212,7 +212,11 @@ export default class GambleCommand extends ChatCommand {
 			'🍆',
 			'🍋',
 			'🍒',
-			'🍑'
+			'🍑',
+			'🍉',
+			'🥑',
+			'🍕',
+			'🍔'
 		];
 
 		const result = [
@@ -226,21 +230,21 @@ export default class GambleCommand extends ChatCommand {
 			// All the same!
 			if (result[0] === symbols[0]) {
 				// All are FATS
-				multiplier = 25;
+				multiplier = 100;
 			} else if (result[0] === symbols[1]) {
 				// All are LESSFATS
-				multiplier = 10;
+				multiplier = 50;
 			} else {
 				// All are other symbols
-				multiplier = 5;
+				multiplier = 25;
 			}
 		} else {
 			// Look for the amount of FAT symbols
 			const fats = result.filter(s => s === symbols[0]).length;
 			if (fats === 2) {
-				multiplier = 2;
+				multiplier = 5;
 			} else if (fats === 1) {
-				multiplier = 1;
+				multiplier = 2;
 			}
 		}
 

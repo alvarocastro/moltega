@@ -33,6 +33,7 @@ import PhSearchCommand from './commands/nsfw/search';
 
 import PyramidEvent from './events/pyramid';
 import MentionEvent from './events/mention';
+import NoseEvent from './events/nose';
 import PassiveSpamPointsEvent from './events/passive-spam-points';
 
 (async function () {
@@ -74,6 +75,7 @@ import PassiveSpamPointsEvent from './events/passive-spam-points';
 
 	bot.addEvent(new PyramidEvent);
 	bot.addEvent(new MentionEvent);
+	bot.addEvent(new NoseEvent);
 	bot.addEvent(new PassiveSpamPointsEvent);
 
 	await bot.login(process.env.DISCORD_TOKEN);

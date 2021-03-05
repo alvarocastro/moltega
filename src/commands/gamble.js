@@ -198,11 +198,17 @@ export default class GambleCommand extends ChatCommand {
 	}
 
 	async commandSlots (message, amount, memory) {
+		const min = 20;
+		const max = 50000;
+
 		if (!amount) {
 			return await this.commandHelp(message, 'slots');
 		}
-		if (amount < 20) {
-			return await message.reply('minimum bet is 20 spam points');
+		if (amount < min) {
+			return await message.reply(`minimum bet is ${min} spam points`);
+		}
+		if (amount > max) {
+			return await message.reply(`maximum bet is ${max} spam points`);
 		}
 
 		const {author} = message;
@@ -212,11 +218,7 @@ export default class GambleCommand extends ChatCommand {
 			'🍆',
 			'🍋',
 			'🍒',
-			'🍑',
-			'🍉',
-			'🥑',
-			'🍕',
-			'🍔'
+			'🍑'
 		];
 
 		const result = [
@@ -267,7 +269,12 @@ export default class GambleCommand extends ChatCommand {
 		}
 		const {author} = message;
 		const callerPoints = memory.get(['points', author.id], 0);
-		amount = Number(amount ?? 0);
+
+		if (amount === 'all') {
+			amount = callerPoints;
+		} else {
+			amount = Number(amount ?? 0);
+		}
 
 		if (callerPoints < amount) {
 			return await message.reply(`you don't have enough points ${this.bot.emoji('KEKWait')}`);

@@ -36,6 +36,8 @@ import MentionEvent from './events/mention';
 import NoseEvent from './events/nose';
 import PassiveSpamPointsEvent from './events/passive-spam-points';
 
+import randomItem from 'random-item';
+
 (async function () {
 	const bot = new Bot({
 		owner: process.env.MOLTAR_DISCORD_ID

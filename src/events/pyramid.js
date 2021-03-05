@@ -38,7 +38,7 @@ const pyramids = {
 			name: 'weirdamid',
 			value: 20
 		},
-		'# # #|#|# # #|#|#': {
+		'#|#|# # #|#|# # #': {
 			name: 'Fmid',
 			value: 1
 		},
@@ -80,7 +80,7 @@ const pyramids = {
 			name: 'bellyriamid',
 			value: 25
 		},
-		'#|# #|# # #|# # # #|#|# #|# # #|# # # #': {
+		'# # # #|# # #|# #|#|# # # #|# # #|# #|#': {
 			name: 'nepalmid',
 			value: 20
 		},
@@ -266,7 +266,7 @@ export default class PyramidEvent extends ChatEvent {
 		const users = {};
 		let size = 0;
 		messages.unshift(message); // Include the triggering message
-		messages.every(({content, author}) => {
+		for (const {content, author} of messages) {
 			size++;
 
 			if (author.bot) {
@@ -291,7 +291,7 @@ export default class PyramidEvent extends ChatEvent {
 
 			if (!pyramids[size]) {
 				// console.log('NO PYRAMIDS THAT SIZE');
-				return true;
+				continue;
 			}
 
 			const serialized = serializedLines.join('|');
@@ -299,15 +299,15 @@ export default class PyramidEvent extends ChatEvent {
 
 			if (!match) {
 				// console.log('NO PYRAMIDS THAT SHAPE');
-				return true;
+				continue;
 			}
 
-			this.processPyramid(match, users, emoji, channel, memory);
+			await this.processPyramid(match, users, emoji, channel, memory);
 			return false;
-		});
+		}
 	}
 
-	processPyramid (match, users, emoji, channel, memory) {
+	async processPyramid (match, users, emoji, channel, memory) {
 		let {name, value} = match;
 		let isCrit = false;
 		let critData = null;
@@ -369,7 +369,7 @@ export default class PyramidEvent extends ChatEvent {
 		// 	}
 		// }
 		// channel.send(gratsMessageText);
-		channel.send(grats.join(' '));
+		await channel.send(grats.join(' '));
 
 		Object.entries(users).forEach(([u, n]) => {
 			const points = memory.get(['points', u]);

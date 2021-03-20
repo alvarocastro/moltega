@@ -20,6 +20,6 @@ export default class CocksCommand extends PhSearchCommand {
 			'dicks'
 		]);
 
-		await super.run(message, [term]);
+		await super.exec(message, [term]);
 	}
 }

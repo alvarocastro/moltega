@@ -18,6 +18,6 @@ export default class HentaiCommand extends PhSearchCommand {
 		}
 
 		const term = 'hentai';
-		await super.run(message, [term]);
+		await super.exec(message, [term]);
 	}
 }

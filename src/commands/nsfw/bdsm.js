@@ -12,12 +12,12 @@ export default class BdsmCommand extends PhSearchCommand {
 		}, options));
 	}
 
-	async run (message) {
+	async exec (message) {
 		const term = randomItem([
 			'bdsm',
 			'cbt'
 		]);
 
-		await super.run(message, [term]);
+		await super.exec(message, [term]);
 	}
 }

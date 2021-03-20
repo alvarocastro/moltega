@@ -31,34 +31,3 @@ export default class BoobsCommand extends ChatCommand {
 		channel.send(`http://media.oboobs.ru/${boob.preview}`);
 	}
 }
-
-/*
-import PhSearchCommand from './search';
-import randomItem from 'random-item';
-
-export default class BoobsCommand extends PhSearchCommand {
-	name = 'boobs';
-	format = null;
-	description = 'Posts a boobs pic';
-
-	check () {
-		return true;
-	}
-
-	async run (message) {
-		const term = randomItem([
-			'boobs',
-			'tits',
-			'boob',
-			'nipple',
-			'tit',
-			'huge boobs',
-			'big boobs',
-			'huge tits',
-			'big tits'
-		]);
-
-		await super.run(message, [term]);
-	}
-}
-*/

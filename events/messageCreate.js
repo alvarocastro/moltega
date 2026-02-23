@@ -1,33 +1,7 @@
 import { Events, MessageFlags } from 'discord.js';
 
-
-// import Groq from 'groq-sdk';
-
-// let AI_CLIENT;
-// const getAiClient = function () {
-// 	return AI_CLIENT || new Groq({
-// 		apiKey: process.env.GROQ_API_KEY
-// 	});
-// }
-
-// const generateFortune = async function (systemInstruction) {
-// 	const groq = getAiClient();
-
-// 	const response = await groq.chat.completions.create({
-// 		messages: [
-// 			{
-// 				role: 'system',
-// 				content: systemInstruction,
-// 			},
-// 		],
-// 		model: 'openai/gpt-oss-20b',
-// 		temperature: 1.9,
-// 	});
-
-// 	return response.choices[0]?.message?.content || 'Your future is uncertain.';
-// };
-
 export default {
+	disabled: true, // Disable this event handler for now, as it's not fully implemented
 	name: Events.MessageCreate,
 
 	async execute (message,a,s,d) {

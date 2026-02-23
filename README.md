@@ -1,3 +1,5 @@
 # moltega
 
-Built using [DiamondBot](https://github.com/alvarocastro/diamondbot)
+Discord bot made using discord.js
+
+Readme TBD.

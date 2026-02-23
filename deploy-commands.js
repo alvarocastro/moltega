@@ -1,5 +1,4 @@
 import 'dotenv/config';
-
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -29,12 +28,18 @@ const __dirname = path.dirname(__filename);
 		for (const file of commandFiles) {
 			const filePath = path.join(commandsPath, file);
 			const { default: command } = await import(filePath);
+
+			if (command.dev && IS_DEV) {
+				console.log(`[INFO] Skipping dev command ${command.data.name}`);
+				continue;
+			}
+			if (command.disabled) {
+				console.log(`[INFO] Skipping disabled command ${command.data.name}`);
+				continue;
+			}
+
 			if ('data' in command && 'execute' in command) {
-				if (command.dev && process.env.NODE_ENV !== 'development') {
-					console.log(`[INFO] Skipping dev command ${command.data.name}`);
-				} else {
-					commands.push(command.data.toJSON());
-				}
+				commands.push(command.data.toJSON());
 			} else {
 				console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 			}

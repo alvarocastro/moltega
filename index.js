@@ -1,5 +1,4 @@
 import 'dotenv/config';
-
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -10,7 +9,10 @@ const token = process.env.DISCORD_TOKEN;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Create a new client instance
+
+// // // // // // // // // // // // // // // // // // // // // // // // //
+// Setup Discord client
+
 const client = new Client({
 	intents: [
 		GatewayIntentBits.Guilds,
@@ -32,11 +34,9 @@ const db = createKeyv({
 
 client.db = db;
 
-// await db.set('fooexp.ew', Date.now(), 10000);
-// console.log('>>>>', await db.get('fooexp.ew'));
-
 // // // // // // // // // // // // // // // // // // // // // // // // //
 // Load commands
+
 client.commands = new Collection();
 
 const foldersPath = path.join(__dirname, 'commands');
@@ -49,13 +49,18 @@ for (const folder of commandFolders) {
 		const filePath = path.join(commandsPath, file);
 		const { default: command } = await import(filePath);
 
+		if (command.dev && process.env.NODE_ENV !== 'development') {
+			console.log(`[INFO] Skipping dev command ${command.data.name}`);
+			continue;
+		}
+		if (command.disabled) {
+			console.log(`[INFO] Skipping disabled command ${command.data.name}`);
+			continue;
+		}
+
 		// Set a new item in the Collection with the key as the command name and the value as the exported module
 		if ('data' in command && 'execute' in command) {
-			if (command.dev && process.env.NODE_ENV !== 'development') {
-				console.log(`[INFO] Skipping dev command ${command.data.name}`);
-			} else {
-				client.commands.set(command.data.name, command);
-			}
+			client.commands.set(command.data.name, command);
 		} else {
 			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 		}
@@ -70,6 +75,15 @@ for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
 	const { default: event } = await import(filePath);
 
+	if (event.dev && process.env.NODE_ENV !== 'development') {
+		console.log(`[INFO] Skipping dev event ${event.name}`);
+		continue;
+	}
+	if (event.disabled) {
+		console.log(`[INFO] Skipping disabled event ${event.name}`);
+		continue;
+	}
+
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(...args));
 	} else {
@@ -77,5 +91,4 @@ for (const file of eventFiles) {
 	}
 }
 
-// Log in to Discord with your client's token
 client.login(token);

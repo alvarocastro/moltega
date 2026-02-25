@@ -7,9 +7,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "start:dev": "node --watch index.js",
-    "deploycommands": "node deploy-commands.js"
+    "start": "node src/index.js",
+    "start:dev": "node --watch src/index.js",
+    "deploycommands": "node src/deploy-commands.js"
   },
   "dependencies": {
     "@keyv/sqlite": "^4.0.8",

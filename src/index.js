@@ -24,7 +24,9 @@ const client = new Client({
 // // // // // // // // // // // // // // // // // // // // // // // // //
 // Setup DB
 
-const databaseUri = process.env.DATABASE_URI;
+const databasePath = process.env.DATABASE_PATH;
+const databaseFile = process.env.DATABASE_FILE;
+const databaseUri = `sqlite://${path.join(databasePath, databaseFile)}`;
 
 import { createKeyv } from '@keyv/sqlite';
 const db = createKeyv({

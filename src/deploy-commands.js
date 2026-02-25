@@ -29,7 +29,7 @@ const __dirname = path.dirname(__filename);
 			const filePath = path.join(commandsPath, file);
 			const { default: command } = await import(filePath);
 
-			if (command.dev && IS_DEV) {
+			if (command.dev && !IS_DEV) {
 				console.log(`[INFO] Skipping dev command ${command.data.name}`);
 				continue;
 			}
@@ -56,8 +56,10 @@ const __dirname = path.dirname(__filename);
 		let data;
 		// The put method is used to fully refresh all commands in the guild with the current set
 		if (IS_DEV) {
+			console.log('>>>> 1');
 			data = await rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands });
 		} else {
+			console.log('>>>> 2');
 			data = await rest.put(Routes.applicationCommands(clientId), { body: commands });
 		}
 		console.log(`Successfully reloaded ${data.length} application (/) commands.`);

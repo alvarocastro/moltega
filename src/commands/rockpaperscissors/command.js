@@ -1,5 +1,8 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, MessageFlags, SlashCommandBuilder } from 'discord.js';
 
+const EXPIRATION_TIME = 5 * 60 * 1000; // 5 minutes
+// time: 1000, // Shorter time for testing
+
 const CHOICE_ID = {
 	rock: 'rock',
 	paper: 'paper',
@@ -66,16 +69,24 @@ export default {
 
 		const filter = i =>
 			i.isButton() &&
-			CHOICES.includes(i.customId);
+			CHOICES.includes(i.customId);// &&
+			// i.user.id !== interaction.user.id; // Only allow other users to play
 
 		const collector = reply.createMessageComponentCollector({
 			filter,
-			max: 1,
-			// time: 5 * 60 * 1000, // 5 minutes
-			time: 1000, // Shorter time for testing
+			// max: 1,
+			time: EXPIRATION_TIME,
+			// time: 1000, // Shorter time for testing
 		});
 
 		collector.on('collect', async i => {
+			if (i.user.id === interaction.user.id) {
+				return i.reply({
+					content: 'You can\'t play your own game.',
+					ephemeral: true,
+				});
+			}
+
 			const otherUserChoice = i.customId;
 			const result = resolveMatchup(
 				{ user: interaction.user, choice },

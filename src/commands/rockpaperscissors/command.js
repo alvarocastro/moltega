@@ -1,7 +1,7 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, MessageFlags, SlashCommandBuilder } from 'discord.js';
 
-const EXPIRATION_TIME = 5 * 60 * 1000; // 5 minutes
-// time: 1000, // Shorter time for testing
+const EXPIRATION_TIME = 10 * 60 * 1000; // 5 minutes
+// const EXPIRATION_TIME =  10 * 1000; // Shorter time for testing
 
 const CHOICE_ID = {
 	rock: 'rock',
@@ -26,7 +26,7 @@ const CHOICES = [
 
 const resolveMatchup = (player1, player2) => {
 	if (player1.choice === player2.choice) {
-		return { result: 'tie', player1, player2 }; // tie
+		return { result: 'tie', player1, player2 };
 	} else if (
 		(player1.choice === CHOICE_ID.rock && player2.choice === CHOICE_ID.scissors) ||
 		(player1.choice === CHOICE_ID.paper && player2.choice === CHOICE_ID.rock) ||
@@ -36,84 +36,6 @@ const resolveMatchup = (player1, player2) => {
 	} else {
 		return { result: 'winner', player1, player2, winner: player2.user };
 	}
-};
-
-export default {
-	disabled: true,
-	data: new SlashCommandBuilder()
-		.setName('rockpaperscissors')
-		.setDescription('Play rock paper scissors with the AI.')
-		.addStringOption(option => option
-			.setName('choice')
-			.setDescription('Your choice (rock, paper, or scissors)')
-			.setRequired(true)
-			.addChoices(
-				{ name: CHOICE_TEXT.rock, value: CHOICE_ID.rock },
-				{ name: CHOICE_TEXT.paper, value: CHOICE_ID.paper },
-				{ name: CHOICE_TEXT.scissors, value: CHOICE_ID.scissors },
-			)
-		),
-
-	async execute (interaction) {
-		const choice = interaction.options.getString('choice');
-
-		const rockButton = new ButtonBuilder().setCustomId(CHOICE_ID.rock).setLabel(CHOICE_TEXT.rock).setStyle(ButtonStyle.Primary);
-		const paperButton = new ButtonBuilder().setCustomId(CHOICE_ID.paper).setLabel(CHOICE_TEXT.paper).setStyle(ButtonStyle.Primary);
-		const scissorsButton = new ButtonBuilder().setCustomId(CHOICE_ID.scissors).setLabel(CHOICE_TEXT.scissors).setStyle(ButtonStyle.Primary);
-		const choicesRow = new ActionRowBuilder().addComponents(rockButton, paperButton, scissorsButton);
-
-		const reply = await interaction.reply({
-			content: `${interaction.user.toString()} started a rock paper scissors game. Click a button to play!`,
-			components: [ choicesRow ],
-		});
-
-		const filter = i =>
-			i.isButton() &&
-			CHOICES.includes(i.customId);// &&
-			// i.user.id !== interaction.user.id; // Only allow other users to play
-
-		const collector = reply.createMessageComponentCollector({
-			filter,
-			// max: 1,
-			time: EXPIRATION_TIME,
-			// time: 1000, // Shorter time for testing
-		});
-
-		collector.on('collect', async i => {
-			if (i.user.id === interaction.user.id) {
-				return i.reply({
-					content: 'You can\'t play your own game.',
-					ephemeral: true,
-				});
-			}
-
-			const otherUserChoice = i.customId;
-			const result = resolveMatchup(
-				{ user: interaction.user, choice },
-				{ user: i.user, choice: otherUserChoice },
-			);
-
-			await Promise.all([
-				reply.edit({ content: 'Game finished!', components: [] }),
-				i.reply(createMatchupMessage(result)),
-			]);
-		});
-
-		collector.on('end', async (_, reason) => {
-			if (reason === 'time') {
-				const botChoice = CHOICES[ Math.floor(Math.random() * CHOICES.length) ];
-				const result = resolveMatchup(
-					{ user: interaction.user, choice },
-					{ user: interaction.client.user, choice: botChoice },
-				);
-
-				await Promise.all([
-					reply.edit({ content: 'Game finished!', components: [] }),
-					interaction.followUp(createMatchupMessage(result, { timeout: true })),
-				]);
-			}
-		});
-	},
 };
 
 const createMatchupMessage = (match, { timeout = false } = {}) => {
@@ -137,4 +59,99 @@ const createMatchupMessage = (match, { timeout = false } = {}) => {
 	}
 
 	return lines.join('\n');
+};
+
+export default {
+	// disabled: true,
+	data: new SlashCommandBuilder()
+		.setName('rockpaperscissors')
+		.setDescription('Play rock paper scissors.')
+		.addStringOption(option => option
+			.setName('choice')
+			.setDescription('Your choice (rock, paper, or scissors)')
+			.setRequired(true)
+			.addChoices(
+				{ name: CHOICE_TEXT.rock, value: CHOICE_ID.rock },
+				{ name: CHOICE_TEXT.paper, value: CHOICE_ID.paper },
+				{ name: CHOICE_TEXT.scissors, value: CHOICE_ID.scissors },
+			)
+		),
+
+	async execute (interaction) {
+		const choice = interaction.options.getString('choice');
+
+		const rockButton = new ButtonBuilder()
+			.setCustomId(CHOICE_ID.rock)
+			.setLabel(CHOICE_TEXT.rock)
+			.setStyle(ButtonStyle.Primary);
+		const paperButton = new ButtonBuilder()
+			.setCustomId(CHOICE_ID.paper)
+			.setLabel(CHOICE_TEXT.paper)
+			.setStyle(ButtonStyle.Primary);
+		const scissorsButton = new ButtonBuilder()
+			.setCustomId(CHOICE_ID.scissors)
+			.setLabel(CHOICE_TEXT.scissors)
+			.setStyle(ButtonStyle.Primary);
+		const choicesRow = new ActionRowBuilder()
+			.addComponents(rockButton, paperButton, scissorsButton);
+
+		const reply = await interaction.reply({
+			content: `${interaction.user} started a rock paper scissors game. Click a button to play!`,
+			components: [ choicesRow ],
+		});
+
+		const filter = i =>
+			i.isButton() &&
+			CHOICES.includes(i.customId);// &&
+			// i.user.id !== interaction.user.id; // Only allow other users to play
+
+		const collector = reply.createMessageComponentCollector({
+			filter,
+			// max: 1,
+			time: EXPIRATION_TIME,
+		});
+
+		collector.on('collect', async i => {
+			if (i.user.id === interaction.user.id) {
+				return i.reply({
+					content: 'You can\'t play your own game.',
+					flags: MessageFlags.Ephemeral,
+				});
+			}
+
+			const otherUserChoice = i.customId;
+			const result = resolveMatchup(
+				{ user: interaction.user, choice },
+				{ user: i.user, choice: otherUserChoice },
+			);
+
+			collector.stop('played'); // Stop the collector after a valid play
+
+			await Promise.all([
+				reply.edit({
+					content: `${interaction.user} started a rock paper scissors game. Game finished!`,
+					components: []
+				}),
+				i.reply(createMatchupMessage(result)),
+			]);
+		});
+
+		collector.on('end', async (_, reason) => {
+			if (reason === 'time') {
+				const botChoice = CHOICES[ Math.floor(Math.random() * CHOICES.length) ];
+				const result = resolveMatchup(
+					{ user: interaction.user, choice },
+					{ user: interaction.client.user, choice: botChoice },
+				);
+
+				await Promise.all([
+					reply.edit({
+						content: `${interaction.user} started a rock paper scissors game. Game finished!`,
+						components: []
+					}),
+					interaction.followUp(createMatchupMessage(result, { timeout: true })),
+				]);
+			}
+		});
+	},
 };

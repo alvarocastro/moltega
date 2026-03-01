@@ -56,10 +56,9 @@ const __dirname = path.dirname(__filename);
 		let data;
 		// The put method is used to fully refresh all commands in the guild with the current set
 		if (IS_DEV) {
-			console.log('>>>> 1');
+			console.log('DEV MODE: Deploying commands to test server only');
 			data = await rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands });
 		} else {
-			console.log('>>>> 2');
 			data = await rest.put(Routes.applicationCommands(clientId), { body: commands });
 		}
 		console.log(`Successfully reloaded ${data.length} application (/) commands.`);

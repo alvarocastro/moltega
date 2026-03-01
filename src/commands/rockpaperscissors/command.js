@@ -39,6 +39,7 @@ const resolveMatchup = (player1, player2) => {
 };
 
 export default {
+	disabled: true,
 	data: new SlashCommandBuilder()
 		.setName('rockpaperscissors')
 		.setDescription('Play rock paper scissors with the AI.')

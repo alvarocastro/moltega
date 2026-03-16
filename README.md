@@ -7,7 +7,7 @@ Readme TBD.
 Run in development
 
 ```bash
-docker compose --profile dev up
+docker compose --profile dev up --build
 ```
 
 Run in prod
